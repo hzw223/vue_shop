@@ -48,16 +48,19 @@
           </template>
         </el-table-column>
         <el-table-column label="操作" width="200px">
-          <el-button
-              @click="showBox"
+          <template slot-scope="scope">
+            <el-button
+              @click="showBox(scope.row.order_id)"
               type="primary"
               icon="el-icon-edit"
             ></el-button>
             <el-button
               type="success"
               icon="el-icon-location"
-              @click="showProgressBox"
+              @click="showProgressBox(scope.row.order_id)"
             ></el-button>
+          </template>
+          
         </el-table-column>
       </el-table>
       <!-- 分页 -->
@@ -285,7 +288,7 @@ export default {
     addressDialogClosed() {
       this.$refs.addressFormRef.resetFields();
     },
-    showBox() {
+    showBox(id) {
       this.addressVisible = true;
     },
     // async showProgressBox() {
@@ -300,7 +303,7 @@ export default {
     //   this.progressVisible = true;
     //   console.log(this.progressInfo);
     // },
-    showProgressBox() {
+    showProgressBox(id) {
       this.progressVisible = true;
     },
   },
